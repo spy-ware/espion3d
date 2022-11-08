@@ -1,6 +1,6 @@
 # espion3d
 
-3D rasterizer with SDL2
+3D rasterizer with SDL2. Still a work-in-progress.
 
 ## Installation / How to compile
 
