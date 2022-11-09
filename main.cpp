@@ -28,11 +28,11 @@ int main(int argc, char *argv[])
 
     vector<int> ascending;
     vector<int> descending;
-    for (int i = 255; i >= 0; i--)
+    for (int i = 254; i >= 0; i--)
     {
         descending.push_back(i);
     }
-    for (int i = 0; i <= 255; i++)
+    for (int i = 0; i <= 254; i++)
     {
         ascending.push_back(i);
     }
@@ -55,33 +55,33 @@ int main(int argc, char *argv[])
         {
             triangle_shaded(
                 {{ascending[t], 0, descending[t], 255},
-                 {50, 100}},
+                 {0, 100}},
                 {{0, descending[t], ascending[t], 255},
-                 {-70, 50}},
+                 {-70, 0}},
                 {{descending[t], ascending[t], 0, 255},
-                 {50, -100}},
+                 {70, 0}},
                 &pxls);
         }
         else if (phase == 1)
         {
             triangle_shaded(
                 {{descending[t], ascending[t], 0, 255},
-                 {50, 100}},
+                 {0, 100}},
                 {{ascending[t], 0, descending[t], 255},
-                 {-70, 50}},
+                 {-70, 0}},
                 {{0, descending[t], ascending[t], 255},
-                 {50, -100}},
+                 {70, 0}},
                 &pxls);
         }
         else if (phase == 2)
         {
             triangle_shaded(
                 {{0, descending[t], ascending[t], 255},
-                 {50, 100}},
+                 {0, 100}},
                 {{descending[t], ascending[t], 0, 255},
-                 {-70, 50}},
+                 {-70, 0}},
                 {{ascending[t], 0, descending[t], 255},
-                 {50, -100}},
+                 {70, 0}},
                 &pxls);
         }
 
@@ -91,7 +91,6 @@ int main(int argc, char *argv[])
         t += 15;
         if (t >= 255)
         {
-            cout << phase << endl;
             t = 0;
             phase++;
             if (phase == 3)
