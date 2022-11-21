@@ -1,9 +1,7 @@
 # espion3d  
-  <div style="width: 20%; height: 20%">
-  
-  ![image](https://raw.githubusercontent.com/spy-ware/espion3d/main/screenshot.png)  
-  
-</div>
+
+  <img src="[https://github.com/favicon.ico](https://raw.githubusercontent.com/spy-ware/espion3d/main/screenshot.png)" width="100">
+
   
   
 ⚠️ **CODE REFACTORING IN PROGRESS** ⚠️  
