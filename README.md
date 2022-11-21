@@ -1,5 +1,5 @@
 # espion3d  
-  <div style="width: 50%; height: 50%">
+  <div style="width: 20%; height: 20%">
   
   ![image](https://raw.githubusercontent.com/spy-ware/espion3d/main/screenshot.png)  
   
