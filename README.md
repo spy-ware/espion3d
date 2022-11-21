@@ -1,6 +1,9 @@
 # espion3d  
+  <div style="width: 50%; height: 50%">
   
-![image](https://raw.githubusercontent.com/spy-ware/espion3d/main/screenshot.png =250x264)  
+  ![image](https://raw.githubusercontent.com/spy-ware/espion3d/main/screenshot.png)  
+  
+</div>
   
   
 ⚠️ **CODE REFACTORING IN PROGRESS** ⚠️  
