@@ -1,6 +1,6 @@
 # espion3d  
 
-  <img src="[https://github.com/favicon.ico](https://raw.githubusercontent.com/spy-ware/espion3d/main/screenshot.png)" width="100">
+  <img src="https://raw.githubusercontent.com/spy-ware/espion3d/main/screenshot.png" width="100">
 
   
   
