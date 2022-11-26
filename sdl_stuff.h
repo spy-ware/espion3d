@@ -1,33 +1,37 @@
-#include "px.h"
+#include "esp_structs.h"
 #include <vector>
 #include <SDL2/SDL.h>
+#include <iostream>
 using namespace std;
 #pragma once
 
-void place_px(vector<int> rgba, vector<int> xy, vector<px> *pixels)
+void place_px(color_s rgba, coord2_s xy, vector<point_s> *pixels)
 {
-	pixels->push_back({rgba, xy});
+	pixels->push_back({xy, rgba});
 }
 
-void clear_px(vector<px> *pixels)
+void clear_px(vector<point_s> *pixels)
 {
 	pixels->clear();
 }
 
-void show_px(vector<px> pixels, SDL_Renderer *renderer, vector<int> screen)
+void show_px(vector<point_s> pixels, SDL_Renderer *renderer, coord2_s screen, int mode)
 {
 	// screen: {width, height}
-	vector<int> rgba;
-	for (px pixel : pixels)
+	for (point_s pixel : pixels)
 	{
 
-		if (pixel.rgba != rgba)
-		{
-			rgba = pixel.rgba;
-			SDL_SetRenderDrawColor(renderer, rgba[0], rgba[1], rgba[2], rgba[3]);
-		}
+		SDL_SetRenderDrawColor(renderer, pixel.clr.r, pixel.clr.g, pixel.clr.b, pixel.clr.a);
 
-		SDL_RenderDrawPoint(renderer, (screen[0] / 2) + pixel.xy[0], (screen[1] / 2) - pixel.xy[1]);
+		if (mode == 1)
+		{
+			SDL_RenderDrawPoint(renderer, (screen.x / 2) + pixel.coord.x, (screen.y / 2) - pixel.coord.y);
+		}
+		else if (mode == 2)
+		{
+			cout << "drawing at " << pixel.coord.x << ", " << pixel.coord.y << endl;
+			SDL_RenderDrawPoint(renderer, pixel.coord.x, pixel.coord.y);
+		}
 	}
 	SDL_RenderPresent(renderer);
 }

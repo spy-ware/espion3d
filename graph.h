@@ -2,9 +2,9 @@
 #include <vector>
 #include <cmath>
 #include "line.h"
-#include "px.h"
+#include "esp_structs.h"
 
-void graph(vector<int> screen, vector<int> rgba, float m, float h, float k, vector<px>* pixels)
+void graph(coord2_s screen, color_s rgba, float m, float h, float k, vector<point_s> *pixels)
 {
 	// y = m(x - h)^2 + k
 
@@ -16,7 +16,7 @@ void graph(vector<int> screen, vector<int> rgba, float m, float h, float k, vect
 	int count = 0;
 
 	// for every pixel on screen width
-	for (int iter = -(screen[0] / 2); iter < screen[0] / 2; iter++)
+	for (int iter = -(screen.x / 2); iter < screen.y / 2; iter++)
 	{
 
 		y.push_back(m * (pow((iter - h), 2)) + k);
@@ -26,16 +26,12 @@ void graph(vector<int> screen, vector<int> rgba, float m, float h, float k, vect
 			line(
 				{
 
-				iter,
-				y[count]
-				},
-				{
-				iter - 1,
-				y[count - 1]
-				},
+					iter,
+					y[count]},
+				{iter - 1,
+				 y[count - 1]},
 				rgba,
-				pixels
-			);
+				pixels);
 		}
 		count++;
 		draw = true;

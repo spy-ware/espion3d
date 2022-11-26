@@ -1,5 +1,5 @@
 #include <vector>
-#include "px.h"
+#include "esp_structs.h"
 #include "sdl_stuff.h"
 #pragma once
 using namespace std;
@@ -43,45 +43,49 @@ vector<float> interpolate_float(float i0, float d0, float i1, float d1)
 	return points;
 }
 
-void line(vector<int> point1, vector<int> point2, vector<int> rgba, vector<px> *pixels)
+void line(coord2_s point1, coord2_s point2, color_s color, vector<point_s> *pixels)
 {
 	/*
 			   [0] [1]
 	   point: { x,  y }
-
 	*/
 
+	coord2_s temp;
 	// difference of the 2 points' x values is bigger than difference in y values; line is more horizontal
-	if (abs(point2[0] - point1[0]) > abs(point2[1] - point1[1]))
+	if (abs(point2.x - point1.x) > abs(point2.y - point1.y))
 	{
-		if (point1[0] > point2[0])
+		if (point1.x > point2.x)
 		{
-			point1.swap(point2);
+			temp = point1;
+			point1 = point2;
+			point2 = temp;
 		}
 
-		vector<int> y_values = interpolate(point1[0], point1[1], point2[0], point2[1]);
+		vector<int> y_values = interpolate(point1.x, point1.y, point2.x, point2.y);
 
-		for (int i = point1[0]; i < point2[0]; i++)
+		for (int i = point1.x; i < point2.x; i++)
 		{
 			pixels->push_back(
-				{rgba,
-				 {i, y_values[i - point1[0]]}});
+				{{i, y_values[i - point1.x]},
+				 {color.r, color.g, color.b, color.a}});
 		}
 	}
 	else
 	{
-		if (point1[1] > point2[1])
+		if (point1.y > point2.y)
 		{
-			point1.swap(point2);
+			temp = point1;
+			point1 = point2;
+			point2 = temp;
 		}
 
-		vector<int> x_values = interpolate(point1[1], point1[0], point2[1], point2[0]);
+		vector<int> x_values = interpolate(point1.y, point1.x, point2.y, point2.x);
 
-		for (int i = point1[1]; i < point2[1]; i++)
+		for (int i = point1.y; i < point2.y; i++)
 		{
 			pixels->push_back(
-				{rgba,
-				 {x_values[i - point1[1]], i}});
+				{{x_values[i - point1.y], i},
+				 {color.r, color.g, color.b, color.a}});
 		}
 	}
 }

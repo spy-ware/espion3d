@@ -1,5 +1,5 @@
 #include <vector>
-#include "px.h"
+#include "esp_structs.h"
 #include "line.h"
 #include "sdl_stuff.h"
 #include <cmath>
@@ -8,7 +8,7 @@
 #include "interp_color.h"
 using namespace std;
 
-void triangle_wire(vector<int> point1, vector<int> point2, vector<int> point3, vector<int> rgba, vector<px> *pixels)
+void triangle_wire(coord2_s point1, coord2_s point2, coord2_s point3, color_s rgba, vector<point_s> *pixels)
 {
 	line(point1, point2, rgba, pixels);
 
@@ -17,17 +17,17 @@ void triangle_wire(vector<int> point1, vector<int> point2, vector<int> point3, v
 	line(point3, point1, rgba, pixels);
 }
 
-void triangle_filled(vector<int> point1, vector<int> point2, vector<int> point3, vector<int> rgba, vector<px> *pixels)
+void triangle_filled(coord2_s point1, coord2_s point2, coord2_s point3, color_s rgba, vector<point_s> *pixels)
 {
 
-	if (point2[1] < point1[1])
+	if (point2.y < point1.y)
 		point2.swap(point1);
-	if (point3[1] < point1[1])
+	if (point3.y < point1.y)
 		point3.swap(point1);
-	if (point3[1] < point2[1])
+	if (point3.y < point2.y)
 		point3.swap(point2);
 
-	vector<int> p12 = interpolate(point1[1], point1[0], point2[1], point2[0]);
+	vector<int> p12 = interpolate(point1.y, point1[0], point2[1], point2[0]);
 	vector<int> p23 = interpolate(point2[1], point2[0], point3[1], point3[0]);
 	vector<int> p13 = interpolate(point1[1], point1[0], point3[1], point3[0]);
 
