@@ -1,5 +1,6 @@
 #include "esp_structs.h"
 #include <vector>
+#pragma once
 using namespace std;
 struct square_s
 {
@@ -39,5 +40,6 @@ const vector<vector<bool>> LINE_spaces =
 struct piece_s
 {
     vector<vector<bool>> piece_type;
+    color_s color;
     coord2_s pos;
 };

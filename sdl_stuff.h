@@ -10,9 +10,11 @@ void place_px(color_s rgba, coord2_s xy, vector<point_s> *pixels)
 	pixels->push_back({xy, rgba});
 }
 
-void clear_px(vector<point_s> *pixels)
+void clear_px(vector<point_s> *pixels, SDL_Renderer *renderer)
 {
 	pixels->clear();
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+	SDL_RenderClear(renderer);
 }
 
 void show_px(vector<point_s> pixels, SDL_Renderer *renderer, coord2_s screen, int mode)
@@ -29,7 +31,6 @@ void show_px(vector<point_s> pixels, SDL_Renderer *renderer, coord2_s screen, in
 		}
 		else if (mode == 2)
 		{
-			cout << "drawing at " << pixel.coord.x << ", " << pixel.coord.y << endl;
 			SDL_RenderDrawPoint(renderer, pixel.coord.x, pixel.coord.y);
 		}
 	}
