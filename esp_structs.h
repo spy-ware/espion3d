@@ -5,7 +5,7 @@ struct color_s
 };
 struct coord2_s
 {
-	int x, y;
+	float x, y;
 };
 struct coord3_s
 {
@@ -34,4 +34,13 @@ struct scene_info_s
 	int resolution;
 	struct coord2_s dimensions;
 	struct coord2_s grid;
+	float wave_move_inc;
+	float wave_age_inc;
+	float max_age;
+};
+struct wave_point_s
+{
+	coord2_s pos;
+	float age;
+	color_s clr;
 };
